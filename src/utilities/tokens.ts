@@ -11,7 +11,7 @@ const configData = {
     tokenActivationDate: 1563783392,
     jsonTokenId: "ze298y42sba"
 }
-export function crtAIC(privateKey: string, context: string[], type: string[], createAlastriaTX: string, alastriaToken: string, publicKey: string, kid?: string, jwk?: string, jti?: string, iat?: number, exp?: number, nbf?: number) {
+export function createSignedAIC(privateKey: string, context: string[], type: string[], createAlastriaTX: string, alastriaToken: string, publicKey: string, kid?: string, jwk?: string, jti?: string, iat?: number, exp?: number, nbf?: number) {
     const jwt = tokensFactory.tokens.createAIC(context, type, createAlastriaTX, alastriaToken, publicKey, kid, jwk, jti, iat, exp, nbf);
     return tokensFactory.tokens.signJWT(jwt, privateKey);
 }

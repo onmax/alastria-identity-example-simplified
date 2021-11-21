@@ -68,7 +68,7 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
     const signedCreateTransaction = await createAlastriaId(web3, newActor.key_pair.public_key, newActorIdentity)
     yield {
         step: step++,
-        message: `Signed create Alastria ID transaction by entity: ${signedCreateTransaction}`,
+        message: `Created and signed create Alastria ID transaction by entity: ${signedCreateTransaction}`,
         type: IAlastriaType.CreateAlastriaIdTx,
         tx: signedCreateTransaction,
         source: IActorType.ENTITY
@@ -77,7 +77,7 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
     const signedPreparedTransaction = await prepareAlastriaId(web3, newActor.address, entityIdentity)
     yield {
         step: step++,
-        message: `Signed prepare Alastria ID transaction by entity: ${signedPreparedTransaction}`,
+        message: `Created and signed prepare Alastria ID transaction by entity: ${signedPreparedTransaction}`,
         type: IAlastriaType.PrepareAlastriaIdTx,
         tx: signedPreparedTransaction,
         source: IActorType.ENTITY
@@ -86,7 +86,7 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
     const receiptPreparedTx = await web3.eth.sendSignedTransaction(signedPreparedTransaction)
     yield {
         step: step++,
-        message: `Receipt of prepare Alastria ID transaction by entity: ${receiptPreparedTx}`,
+        message: `Receipt of prepare Alastria ID transaction by entity`,
         type: IAlastriaType.ReceiptPrepareAlastriaIdTx,
         receipt: receiptPreparedTx,
         source: IActorType.ENTITY
@@ -95,7 +95,7 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
     const receiptCreateTx = await web3.eth.sendSignedTransaction(signedCreateTransaction)
     yield {
         step: step++,
-        message: `Receipt of create Alastria ID transaction: ${receiptCreateTx}`,
+        message: `Receipt of create Alastria ID transaction`,
         type: IAlastriaType.ReceiptCreateAlastriaIdTx,
         receipt: receiptCreateTx,
         source: IActorType.ENTITY
