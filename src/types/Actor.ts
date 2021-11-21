@@ -1,6 +1,16 @@
 export interface IActor {
     address: string,
     password: string,
-    publicKey: string,
-    privateKey: string,
+    type: IActorType,
+    keystore_content: string,
+    key_pair: {
+        public_key: string,
+        private_key: string,
+    }
+}
+
+export enum IActorType {
+    ENTITY = 'entity',
+    ACTOR = 'actor',
+    ANY = 'any',
 }

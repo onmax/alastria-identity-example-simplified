@@ -1,12 +1,15 @@
-const keythereum = require("keythereum")
+import Wallet from 'ethereumjs-wallet'
+import { IActor } from '../types'
+import { remove0x } from './hex';
 
-export function getPrivateKey(ksPath: string, password: string) {
+
+export async function getKeyPair(ks: string, password: string): Promise<IActor["key_pair"]> {
     try {
-        const ks = keythereum.recover(
-            password,
-            require(ksPath)
-        )
-        return ks.toString("hex")
+        const wallet = await Wallet.fromV3(ks, password)
+        return {
+            private_key: remove0x(wallet.getPrivateKeyString()),
+            public_key: remove0x(wallet.getPublicKeyString())
+        }
     } catch (error) {
         console.log('ERROR opening keystore: ', error)
         process.exit(1)

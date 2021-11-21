@@ -1,22 +1,16 @@
 import { transactionFactory, UserIdentity } from 'alastria-identity-lib'
+const { createAlastriaIdentity, prepareAlastriaID } = transactionFactory.identityManager
 import Web3 from "web3";
 import { AbiItem } from 'web3-utils';
-import { add0x } from './hex';
+import { add0x, remove0x } from './hex';
 
 export async function createAlastriaId(web3: Web3, newActorPubKey: string, newActorIdentity: UserIdentity): Promise<any> {
-    newActorPubKey = newActorPubKey.startsWith("0x") ? newActorPubKey.substr(2) : newActorPubKey // todo maybe move to antoher file
-    const txCreateAlastriaID = transactionFactory.identityManager.createAlastriaIdentity(
-        web3,
-        newActorPubKey
-    )
+    const txCreateAlastriaID = createAlastriaIdentity(web3, remove0x(newActorPubKey))
     return await newActorIdentity.getKnownTransaction(txCreateAlastriaID)
 }
 
 export async function prepareAlastriaId(web3: Web3, newActorAddress: string, entityIdentity: UserIdentity): Promise<any> {
-    const preparedId = transactionFactory.identityManager.prepareAlastriaID(
-        web3,
-        add0x(newActorAddress)
-    )
+    const preparedId = prepareAlastriaID(web3, add0x(newActorAddress))
     return await entityIdentity.getKnownTransaction(preparedId)
 }
 

@@ -27,6 +27,7 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
-    "alastria-identity-lib": "git+https://github.com/alastria/alastria-identity-lib.git#develop"
+    "alastria-identity-lib": "git+https://github.com/alastria/alastria-identity-lib.git#develop",
+    "ethereumjs-wallet": "^1.0.2"
   }
 }
