@@ -7,6 +7,6 @@
     "watch": true,
     // Checks
     "noUnusedLocals": false,
-    "allowUnreachableCode": true
+    "allowUnreachableCode": true,
   }
 }
