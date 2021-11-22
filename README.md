@@ -4,7 +4,7 @@ A simplified version of alastria-identity-examples and with generators
 
 ## Create subject
 
-Running (`./src/index.ts`)[`./src/index.ts`], you will get:
+Running [`./src/index.ts`](./src/index.ts), you will get:
 
 <details>
   <summary>Output</summary>
