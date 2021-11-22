@@ -25,7 +25,6 @@ interface ITxAlastriaEvent {
 interface IKeystoreOpenedEvent extends IBaseAlastriaEvent {
     type: IAlastriaType.KeystoreOpened,
     address: string,
-    keystore: string
     password: string,
     key_pair: IActor["key_pair"]
 }

@@ -45,10 +45,9 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
         step: step++,
         type: IAlastriaType.KeystoreOpened,
         address: entity.address,
-        keystore: entity.keystore_content,
         message: `Entity keystore opened and generated identity`,
         password: entity.password,
-        source: newActor.type,
+        source: entity.type,
         key_pair: entity.key_pair
     }
 
@@ -58,7 +57,6 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
         step: step++,
         type: IAlastriaType.KeystoreOpened,
         address: newActor.address,
-        keystore: newActor.keystore_content,
         message: `New Actor keystore opened and generated identity`,
         password: newActor.password,
         source: newActor.type,
@@ -68,7 +66,7 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
     const signedCreateTransaction = await createAlastriaId(web3, newActor.key_pair.public_key, newActorIdentity)
     yield {
         step: step++,
-        message: `Created and signed create Alastria ID transaction by entity: ${signedCreateTransaction}`,
+        message: `Created and signed create Alastria ID transaction by entity`,
         type: IAlastriaType.CreateAlastriaIdTx,
         tx: signedCreateTransaction,
         source: IActorType.ENTITY
@@ -77,7 +75,7 @@ export async function* CreateSubjectGen({ url, network, network_id }: INodeConfi
     const signedPreparedTransaction = await prepareAlastriaId(web3, newActor.address, entityIdentity)
     yield {
         step: step++,
-        message: `Created and signed prepare Alastria ID transaction by entity: ${signedPreparedTransaction}`,
+        message: `Created and signed prepare Alastria ID transaction by entity`,
         type: IAlastriaType.PrepareAlastriaIdTx,
         tx: signedPreparedTransaction,
         source: IActorType.ENTITY

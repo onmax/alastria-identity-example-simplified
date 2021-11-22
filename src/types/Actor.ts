@@ -11,6 +11,8 @@ export interface IActor {
 
 export enum IActorType {
     ENTITY = 'entity',
+    SERVICE_PROVIDER = 'service_provider',
+    SUBJECT = 'subject',
     ACTOR = 'actor',
     ANY = 'any',
 }
